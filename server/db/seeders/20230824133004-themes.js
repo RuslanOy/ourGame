@@ -1,25 +1,23 @@
 'use strict';
-const {Theme} = require('../models')
+const { Theme } = require('../models');
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up (queryInterface, Sequelize) {
-    await Theme.bulkCreate(
-      [
-        {
-          title: 'Тема 1',
-        },
-        {
-          title: 'Тема 2',
-        },
-        {
-          title: 'Тема 3',
-        },
-      ]
-    )
+  async up(queryInterface, Sequelize) {
+    await Theme.bulkCreate([
+      {
+        title: 'Эльбрус',
+      },
+      {
+        title: 'Забавно',
+      },
+      {
+        title: 'Кино',
+      },
+    ]);
   },
 
-  async down (queryInterface, Sequelize) {
-    await Theme.destroy({where: {}});
-  }
+  async down(queryInterface, Sequelize) {
+    await Theme.destroy({ where: {} });
+  },
 };
