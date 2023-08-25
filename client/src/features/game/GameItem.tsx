@@ -48,11 +48,12 @@ function GameItem({ question }: { question: Question }): JSX.Element {
     <>
       <button
         disabled={isDisabled}
-        className="btn-open"
+        className={isDisabled ? "btn-open btn-inactive" : "btn-open"}
         key={question.id}
         type="button"
         onClick={() => handleClickOpen()}>
         {isDisabled ? 'открыто' : question.price}
+        {/* style={({ isDisabled }) => (isDisabled ? 'active_link' : '')} */}
       </button>
       <Modal active={modalActive} setActive={setModalActive}>
         <>
@@ -62,7 +63,7 @@ function GameItem({ question }: { question: Question }): JSX.Element {
             key={question.id}
             type="button"
             onClick={() => handleClickCheck()}>
-            Check
+            Проверить
           </button>
           <p className="check-answer">{notice}</p>
         </>

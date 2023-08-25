@@ -25,7 +25,7 @@ module.exports = {
         theme_id: 1,
       },
       {
-        question: 'Сколько студентов выпучилось за 4,5 года?',
+        question: 'Сколько студентов выпустилось за 4,5 года?',
         answer: '1583',
         price: 800,
         theme_id: 1,

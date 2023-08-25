@@ -9,6 +9,8 @@ import RegisterPage from '../features/auth/register/RegisterPage';
 import LoginPage from '../features/auth/login/LoginPage';
 import { fetchQuestions } from './api';
 import { useAppDispatch } from '../redux/store';
+import MainPage from '../features/main/MainPage';
+import Error from '../features/404/Error';
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -26,11 +28,11 @@ function App(): JSX.Element {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<NavBar />}>
-          {/* <Route path="/" element={<MainPage />} />*/}
+          <Route path="/" element={<MainPage />} />
           <Route path="/game" element={<GamePage />} />
           <Route path="/auth/login" element={<LoginPage />} />
           <Route path="/auth/register" element={<RegisterPage />} />
-          {/* <Route path="*" element={<Error />} /> */}
+          <Route path="*" element={<Error />} />
         </Route>
       </Routes>
     </BrowserRouter>

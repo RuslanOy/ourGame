@@ -1,6 +1,8 @@
 .super-div {
     max-width: 1000px; 
     align-self: center;
+    align-items: center;
+    margin-left: 20vh;
 }
 
 .container {
@@ -18,13 +20,19 @@
   }
 }
 
-.btn-open {
+.btn-open{
     width: 150px;
     height: 150px;
     font-size: 30px;
     border-radius: 20px;
     border: none;
     margin: 5px;
+    background-color: darkcyan;
+    color: white;
+    box-shadow: 0 4px 10px rgba($color: #000000, $alpha: 0.2);
+}
+.btn-open.btn-inactive{
+  background:gray;
 }
 
 .back-img {
