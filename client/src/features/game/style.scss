@@ -1,0 +1,33 @@
+.super-div {
+    max-width: 1000px; 
+    align-self: center;
+}
+
+.container {
+  display: flex;
+  align-self: center;
+  margin: 15px;
+
+  &__theme {
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+  }
+}
+
+.btn-open {
+    width: 150px;
+    height: 150px;
+    font-size: 30px;
+    border-radius: 20px;
+    border: none;
+    margin: 5px;
+}
+
+.back-img {
+    width: 100%;
+    width: 100%;
+}
