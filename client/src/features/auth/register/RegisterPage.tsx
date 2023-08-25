@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './styles/register.scss';
 import { useAppDispatch } from '../../../redux/store';
 import { fetchRegister } from '../../../App/api';
+import { useNavigate } from 'react-router-dom';
 
 function RegisterPage(): JSX.Element {
   const [name, setName] = useState('');
@@ -9,11 +10,13 @@ function RegisterPage(): JSX.Element {
   const [password, setPassword] = useState('');
 
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const onHandleRegisterUser = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     const data = await fetchRegister({ name, email, password, score: 0 });
     dispatch({ type: 'user/register', payload: data });
+    navigate('/');
   };
 
   return (
