@@ -5,7 +5,9 @@ const app = express();
 const PORT = 4000;
 
 const indexRouter = require('./routes/index');
-app.use(express.json());
+const serverConfig = require('./config/serverConfig')
+
+serverConfig(app)
 
 app.use('/', indexRouter);
 

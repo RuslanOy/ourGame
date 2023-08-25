@@ -7,7 +7,7 @@ export const fetchQuestions = async (): Promise<Theme[]> => {
 };
 
 export const fetchRegister = async (user: User): Promise<User> => {
-  const res = await fetch('/api/auth/sign-up', {
+  const res = await fetch('/api/auth/registration', {
     method: 'POST',
     headers: {
       'Content-type': 'application/json',

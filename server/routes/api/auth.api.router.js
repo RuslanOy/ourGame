@@ -8,7 +8,7 @@ router.post('/registration', async (req, res) => {
     let user;
     const { name, email, password } = req.body;
     if (name.trim() && email.trim() && password.trim()) {
-      newUser = await User.findOn({ where: { email } });
+      user = await User.findOne({ where: { email } });
       if (user) {
         res.json({ message: 'Данная почта уже существует' });
         return;
@@ -16,7 +16,7 @@ router.post('/registration', async (req, res) => {
         const hash = await bcrypt.hash(req.body.password, 10);
         user = await User.create({ name, email, password: hash, score: 0 });
         req.session.user_id = user.id;
-        res.json({ message: 'Регистрация успешна' });
+        res.json(user);
         return;
       }
     } else {
@@ -46,6 +46,19 @@ router.post('/authorization', async (req, res) => {
       res.json({ message: 'Заполните все поля!' });
       return;
     }
+  } catch ({ message }) {
+    res.json({ message });
+  }
+});
+
+router.get('/check', async (req, res) => {
+  try {
+    if (req.session.user_id) {
+      const user = await User.findOne({ where: { id: req.session.user_id } });
+      res.json(user);
+      return;
+    }
+    res.json(null);
   } catch ({ message }) {
     res.json({ message });
   }
