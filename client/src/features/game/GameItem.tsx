@@ -3,36 +3,40 @@ import { Question } from './types/types';
 import Modal from '../modal/Modal';
 import { RootState, useAppDispatch } from '../../redux/store';
 import { useSelector } from 'react-redux';
+import './style.scss';
+import { fetchScore } from '../../App/api';
 
 function GameItem({ question }: { question: Question }): JSX.Element {
   const [modalActive, setModalActive] = useState(false);
   const [answer, setAnswer] = useState('');
   const [notice, setNotice] = useState('');
+  const [isDisabled, setIsDisabled] = useState(false);
 
   const dispatch = useAppDispatch();
   const userScore = useSelector((store: RootState) => store.user.userScore);
 
   const handleClickOpen = (): void => {
-    console.log(question);
     setModalActive(true);
   };
 
   const handleClickCheck = (): void => {
-    console.log(question);
-    console.log(answer);
-
     if (answer.trim()) {
       if (answer.toLowerCase() === question.answer.toLowerCase()) {
-        // Add Fetch for score !!!!!!!!!!!!!!!!!
-        dispatch({ type: 'user/addScore', payload: question.price });
-        console.log(userScore, '=----------------------');
-        
+
+        dispatch({
+          type: 'user/addScore',
+          payload: userScore + question.price,
+        });
+        fetchScore(question.id, userScore);
         setNotice('Верно');
-        console.log(notice);
+        setIsDisabled(true);
         setAnswer('');
         return;
       }
       setNotice(`Нет =( Правильный ответ: ${question.answer}`);
+      dispatch({ type: 'user/addScore', payload: userScore - question.price });
+      fetchScore(question.id, userScore);
+      setIsDisabled(true);
       setAnswer('');
       return;
     }
@@ -43,10 +47,12 @@ function GameItem({ question }: { question: Question }): JSX.Element {
   return (
     <>
       <button
+        disabled={isDisabled}
+        className="btn-open"
         key={question.id}
         type="button"
         onClick={() => handleClickOpen()}>
-        {question.price}
+        {isDisabled ? 'открыто' : question.price}
       </button>
       <Modal active={modalActive} setActive={setModalActive}>
         <>

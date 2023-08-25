@@ -12,6 +12,7 @@ function NavBar(): JSX.Element {
   
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const userScore = useSelector((store: RootState) => store.user.userScore);
 
   const handleLogOut = async (): Promise<void> => {
     const data = await fetchLogOut();
