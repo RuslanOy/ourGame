@@ -25,6 +25,8 @@ function GameItem({ question }: { question: Question }): JSX.Element {
       if (answer.toLowerCase() === question.answer.toLowerCase()) {
         // Add Fetch for score !!!!!!!!!!!!!!!!!
         dispatch({ type: 'user/addScore', payload: question.price });
+        console.log(userScore, '=----------------------');
+        
         setNotice('Верно');
         console.log(notice);
         setAnswer('');

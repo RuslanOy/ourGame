@@ -7,14 +7,17 @@ import { useSelector } from 'react-redux';
 
 function NavBar(): JSX.Element {
   const user = useSelector((store: RootState) => store.user.users);
+  const userScore = useSelector((store: RootState) => store.user.userScore);
+  // const userSing = useSelector((store: RootState) => store.user.userNonSign);
+  
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const handleLogOut = async (): Promise<void> => {
     const data = await fetchLogOut();
     if (data.message === 'success') {
-      navigate('/');
       dispatch({ type: 'auth/logout' });
+      navigate('/');
     }
   };
 
@@ -34,7 +37,7 @@ function NavBar(): JSX.Element {
               Играть
             </NavLink>
           </li>
-          <li>Привет, {user.name}! Твой счет: {user.score}</li>
+          <li>Привет, {user.name}! Твой счет: {userScore}</li>
               <li>
                 <button
                   className="nav__btn"

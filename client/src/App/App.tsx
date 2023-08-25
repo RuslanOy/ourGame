@@ -14,7 +14,6 @@ function App(): JSX.Element {
   const dispatch = useAppDispatch();
   const loadQuestions = async (): Promise<void> => {
     const data = await fetchQuestions();
-    console.log(data);
 
     dispatch({ type: 'game/load', payload: data });
   };
