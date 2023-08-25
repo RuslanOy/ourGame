@@ -1,9 +1,9 @@
 export type Question = {
   id: number;
-  q: string;
-  a: string;
+  question: string;
+  answer: string;
   price: number;
-  theme_id: [string];
+  Theme: { title: string };
 };
 
 export type Theme = Question[];
