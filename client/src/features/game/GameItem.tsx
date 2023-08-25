@@ -22,6 +22,7 @@ function GameItem({ question }: { question: Question }): JSX.Element {
   const handleClickCheck = (): void => {
     if (answer.trim()) {
       if (answer.toLowerCase() === question.answer.toLowerCase()) {
+
         dispatch({
           type: 'user/addScore',
           payload: userScore + question.price,

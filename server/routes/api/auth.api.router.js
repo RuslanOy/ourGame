@@ -36,7 +36,7 @@ router.post('/authorization', async (req, res) => {
       user = await User.findOne({ where: { email } });
       if (user && (await bcrypt.compare(password, user.password))) {
         req.session.user_id = user.id;
-        res.json({ message: 'Вход успешен' });
+        res.json(user);
         return;
       } else {
         res.json({ message: 'Неверный логин или пароль' });
@@ -70,10 +70,9 @@ router.get('/logout', (req, res) => {
     if (error) {
       return res.status(500).json({ message: 'Ошибка при удалении сессии' });
     }
+    console.log(123123);
 
-    res
-      .clearCookie('user_sid') // серверное удаление куки по имени
-      .redirect('/');
+    res.clearCookie('user_sid').json({message: 'success'}) // серверное удаление куки по имени
   });
 });
 

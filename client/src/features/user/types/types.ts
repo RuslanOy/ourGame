@@ -6,4 +6,10 @@ export type User = {
   score: number;
 };
 
+export type UserSign = {
+  id?: number;
+  email: string;
+  password: string;
+};
+
 export type UserScore = User['score'];

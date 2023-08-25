@@ -1,20 +1,23 @@
 import { Theme } from '../features/game/types/types';
-import { User } from '../features/user/types/types';
+import { User, UserSign } from '../features/user/types/types';
 
 export const fetchQuestions = async (): Promise<Theme[]> => {
   const res = await fetch('/api/questions');
   return res.json();
 };
 
-export const fetchScore = async (id: number, score: number): Promise<void> => {
-  await fetch(`/api/user/${id}`, {
-    method: 'PUT',
+
+export const fetchSignIn = async (user: UserSign): Promise<User> => {
+  const res = await fetch('/api/auth/authorization', {
+    method: 'POST',
     headers: {
       'Content-type': 'application/json',
     },
-    body: JSON.stringify(score),
+    body: JSON.stringify(user),
   });
-};
+  return res.json();
+} 
+
 
 export const fetchRegister = async (user: User): Promise<User> => {
   const res = await fetch('/api/auth/registration', {
