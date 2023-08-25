@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './styles/register.scss';
 import { useAppDispatch } from '../../../redux/store';
+import { fetchRegister } from '../../../App/api';
 
 function RegisterPage(): JSX.Element {
   const [name, setName] = useState('');
@@ -11,7 +12,7 @@ function RegisterPage(): JSX.Element {
 
   const onHandleRegisterUser = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
-    const data = await fetchRegisterUser({ name, email, password, score });
+    const data = await fetchRegister({ name, email, password, score: 0 });
     dispatch({ type: 'user/register', payload: data });
   };
 
