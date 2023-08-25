@@ -9,6 +9,7 @@ function NavBar(): JSX.Element {
   const user = useSelector((store: RootState) => store.user.users);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const userScore = useSelector((store: RootState) => store.user.userScore);
 
   const handleLogOut = async (): Promise<void> => {
     const data = await fetchLogOut();
@@ -34,7 +35,7 @@ function NavBar(): JSX.Element {
               Играть
             </NavLink>
           </li>
-          <li>Привет, {user.name}! Твой счет: {user.score}</li>
+          <li>Привет, {user.name}! Твой счет: {userScore}</li>
               <li>
                 <button
                   className="nav__btn"

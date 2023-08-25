@@ -26,7 +26,7 @@ const userReducer = (state = initialState, action: Action): State => {
     case 'user/addScore':
       return {
         ...state,
-        userScore: state.userScore + action.payload,
+        userScore: action.payload,
 
       };
     default:
