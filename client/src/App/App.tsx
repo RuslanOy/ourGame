@@ -8,21 +8,16 @@ import NavBar from '../features/navbar/NavBar';
 import RegisterPage from '../features/auth/register/RegisterPage';
 import LoginPage from '../features/auth/login/LoginPage';
 import { fetchQuestions } from './api';
-import { Question, Theme } from '../features/game/types/types';
 import { useAppDispatch } from '../redux/store';
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
   const loadQuestions = async (): Promise<void> => {
     const data = await fetchQuestions();
-    const array = data.map((el: Question) => el.Theme.title);
-    const uniqueArray = [...new Set(array)];
-    const myArray: Theme[] = uniqueArray.map((el: string) => [
-      ...data.filter((elem: Question) => elem.Theme.title === el),
-    ]);
 
-    dispatch({ type: 'game/load', payload: myArray });
+    dispatch({ type: 'game/load', payload: data });
   };
+
   useEffect(() => {
     loadQuestions();
   }, []);
