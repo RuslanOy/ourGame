@@ -6,6 +6,16 @@ export const fetchQuestions = async (): Promise<Theme[]> => {
   return res.json();
 };
 
+export const fetchScore = async (id: number, score: number): Promise<void> => {
+  await fetch(`/api/user/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-type': 'application/json',
+    },
+    body: JSON.stringify(score),
+  });
+};
+
 
 export const fetchSignIn = async (user: UserSign): Promise<User> => {
   const res = await fetch('/api/auth/authorization', {
